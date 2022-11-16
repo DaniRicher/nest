@@ -31,19 +31,16 @@ export class CarsController {
     }
 
     @Patch(':id')
-    updateCar( @Param('id', ParseUUIDPipe ) id: number, @Body() updateCarDto: UpdateCarDto ) {
+    updateCar( @Param('id', ParseUUIDPipe ) id: string, @Body() updateCarDto: UpdateCarDto ) {
 
-        return updateCarDto;
+        return this.CarsService.updateCar( id, updateCarDto );
 
     }
 
     @Delete(':id')
-    deleteCar( @Param('id', ParseIntPipe ) id: number ) {
+    deleteCar( @Param('id', ParseUUIDPipe ) id: string ) {
 
-        return {
-            method: 'delete',
-            id
-        };
+        return this.CarsService.deteleCar( id );
 
     }
     
